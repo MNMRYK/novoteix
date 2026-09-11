@@ -1,0 +1,2574 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>NovoTeix | Tejidos Técnicos Sostenibles - Alcoy & Cocentaina</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&display=swap"
+      rel="stylesheet"
+    />
+
+    <style>
+      :root {
+        /* Colores Base */
+        --color-dark: #0b0b0b;
+        --color-lime: #eaf24d;
+        --color-greige: #f4f3f0;
+        --color-text-dark: #1a1a1a;
+        --color-text-light: #f4f3f0;
+        --color-gray: #7a8b94;
+
+        /* Colores Bento Box (Pasteles Desaturados) */
+        --color-bento-white: #ffffff;
+        --color-bento-blue: #a3b1b8;
+        --color-bento-green: #c2d3d0;
+
+        /* Radios y Sombras */
+        --radius-bento: 24px;
+        --shadow-soft: 0 12px 36px rgba(0, 0, 0, 0.04);
+        --shadow-hover: 0 16px 48px rgba(0, 0, 0, 0.08);
+        --shadow-modal: 0 24px 64px rgba(0, 0, 0, 0.2);
+
+        /* Transiciones */
+        --transition-smooth: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Outfit", sans-serif;
+        background-color: var(--color-greige);
+        color: var(--color-text-dark);
+        overflow-x: hidden;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      ul {
+        list-style: none;
+      }
+
+      .container {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      .text-center {
+        text-align: center;
+      }
+
+      header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        background-color: rgba(11, 11, 11, 0.9);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      }
+
+      .nav-container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1.2rem 2rem;
+        max-width: 1280px;
+        margin: 0 auto;
+        color: var(--color-text-light);
+      }
+
+      .logo {
+        font-size: 1.4rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .logo-dot {
+        width: 8px;
+        height: 8px;
+        background-color: var(--color-lime);
+        border-radius: 50%;
+        display: inline-block;
+      }
+
+      /* Navegación Desktop */
+      .desktop-nav {
+        display: flex;
+        gap: 2.5rem;
+        align-items: center;
+      }
+
+      .desktop-nav a {
+        font-weight: 500;
+        font-size: 0.95rem;
+        opacity: 0.8;
+        transition: var(--transition-smooth);
+      }
+
+      .desktop-nav a:hover {
+        opacity: 1;
+        color: var(--color-lime);
+      }
+
+      .nav-actions {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+      }
+
+      .nav-btn-logistics {
+        padding: 0.6rem 1.4rem;
+        background-color: transparent;
+        border: 1px solid var(--color-lime);
+        color: var(--color-lime);
+        border-radius: 100px;
+        font-weight: 600;
+        font-size: 0.9rem;
+        transition: var(--transition-smooth);
+        white-space: nowrap;
+      }
+
+      .nav-btn-logistics:hover {
+        background-color: var(--color-lime);
+        color: var(--color-dark);
+      }
+
+      /* Botón Hamburguesa */
+      .menu-toggle {
+        display: none;
+        flex-direction: column;
+        justify-content: space-between;
+        width: 28px;
+        height: 20px;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        padding: 0;
+      }
+
+      .menu-toggle span {
+        width: 100%;
+        height: 2px;
+        background-color: var(--color-text-light);
+        border-radius: 2px;
+        pointer-events: none;
+        transition: var(--transition-smooth);
+      }
+
+      /* Menú Desplegable Móvil (Oculto por defecto) */
+      .mobile-dropdown {
+        display: none;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background-color: rgba(11, 11, 11, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.6);
+        padding: 2rem;
+        flex-direction: column;
+        gap: 1rem;
+        text-align: center;
+      }
+
+      .mobile-dropdown.active {
+        display: flex;
+      }
+
+      .mobile-link {
+        width: 100%;
+        padding: 0.8rem;
+        font-size: 1.1rem;
+        font-weight: 600;
+        color: var(--color-text-light);
+        border-radius: 12px;
+        transition: var(--transition-smooth);
+      }
+
+      .mobile-link:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        color: var(--color-lime);
+      }
+
+      .mobile-cta {
+        margin-top: 1rem;
+        display: inline-block;
+        width: 100%;
+        text-align: center;
+        background-color: var(--color-lime);
+        color: var(--color-dark) !important;
+      }
+
+
+      .hero {
+        position: relative;
+        background-color: var(--color-dark);
+        min-height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-light);
+        overflow: hidden;
+      }
+
+      .hero::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-image: radial-gradient(
+          rgba(234, 242, 77, 0.15) 1px,
+          transparent 1px
+        );
+        background-size: 32px 32px;
+        z-index: 1;
+      }
+
+      .hero-glow {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 60vw;
+        height: 60vw;
+        background: radial-gradient(
+          circle,
+          rgba(234, 242, 77, 0.15) 0%,
+          rgba(11, 11, 11, 0) 60%
+        );
+        border-radius: 50%;
+        filter: blur(80px);
+        z-index: 2;
+        pointer-events: none;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 10;
+        text-align: center;
+        max-width: 1000px;
+        padding: 4rem 2rem 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem; /* Espaciado uniforme y elegante entre elementos */
+      }
+
+      .hero-tag {
+        display: inline-block;
+        padding: 0.5rem 1.2rem;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 100px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin: 0; /* Limpiamos márgenes antiguos */
+        color: var(--color-lime);
+      }
+
+      .hero-title {
+        font-size: clamp(3rem, 6vw, 5.5rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -2px;
+        margin: 0; /* Limpiamos márgenes antiguos */
+      }
+
+      .hero-subtitle {
+        font-size: clamp(1.1rem, 2vw, 1.4rem);
+        font-weight: 300;
+        opacity: 0.7;
+        max-width: 600px;
+        margin: 0; /* Limpiamos márgenes antiguos */
+        line-height: 1.6;
+      }
+
+      .hero-buttons {
+        display: flex;
+        gap: 1.5rem;
+        justify-content: center;
+      }
+
+      .btn {
+        padding: 1rem 2.5rem;
+        border-radius: 100px;
+        font-size: 1.1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: var(--transition-smooth);
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        border: none;
+        font-family: inherit;
+      }
+
+      .btn-primary {
+        background-color: var(--color-lime);
+        color: var(--color-dark);
+      }
+
+      .btn-primary:hover {
+        transform: translateY(-3px);
+        box-shadow: 0 10px 20px rgba(234, 242, 77, 0.2);
+      }
+
+      .btn-secondary {
+        background-color: transparent;
+        color: var(--color-text-light);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+      }
+
+      .btn-secondary:hover {
+        background-color: rgba(255, 255, 255, 0.05);
+        border-color: var(--color-lime);
+        color: var(--color-lime);
+      }
+
+      /* SECCIÓN: Historia / Filosofía (Editorial) */
+      .history-section {
+        padding-top: 8rem;
+        padding-bottom: 4rem;
+      }
+
+      .history-banner {
+        position: relative;
+        border-radius: var(--radius-bento);
+        overflow: hidden;
+        /* Imagen temporal de Unsplash (telares/hilos) para la previsualización */
+        background-image: url("background-image.jpg");
+        background-size: cover;
+        background-position: center;
+        min-height: 650px;
+        display: flex;
+        align-items: flex-end;
+        box-shadow: var(--shadow-soft);
+      }
+
+      /* Capa oscura para asegurar que el texto siempre sea legible */
+      .history-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+          to top,
+          rgba(11, 11, 11, 0.95) 0%,
+          rgba(11, 11, 11, 0.6) 40%,
+          rgba(11, 11, 11, 0.1) 100%
+        );
+        z-index: 1;
+      }
+
+      .history-content {
+        position: relative;
+        z-index: 2;
+        padding: 4rem;
+        width: 100%;
+        color: var(--color-text-light);
+      }
+
+      .history-badge {
+        display: inline-block;
+        padding: 0.5rem 1.2rem;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 100px;
+        font-size: 0.85rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        margin-bottom: 1.5rem;
+        color: var(--color-lime);
+      }
+
+      .history-content h2 {
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        font-weight: 800;
+        line-height: 1.05;
+        letter-spacing: -1px;
+        margin-bottom: 2.5rem;
+        max-width: 900px;
+      }
+
+      .highlight-lime {
+        color: var(--color-lime);
+      }
+
+      .history-text-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        padding-top: 2.5rem;
+      }
+
+      .history-text-grid p {
+        font-size: 1.15rem;
+        line-height: 1.7;
+        opacity: 0.85;
+        margin: 0;
+      }
+
+
+      /* SECCIÓN: Innovación Textil (Mejorada) */
+      .innovation-section {
+        padding: 4rem 2rem 2rem;
+        background-color: var(--color-greige);
+      }
+
+      .innovation-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+        margin-top: 3.5rem;
+      }
+
+      .innovation-card {
+        background-color: var(--color-bento-white);
+        border-radius: var(--radius-bento);
+        padding: 3rem 2.5rem;
+        box-shadow: var(--shadow-soft);
+        transition: var(--transition-smooth);
+        border: 1px solid rgba(0, 0, 0, 0.03);
+        display: flex;
+        flex-direction: column;
+        gap: 1.2rem;
+      }
+
+      .innovation-card:hover {
+        transform: translateY(-8px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .innovation-icon-wrap {
+        width: 64px;
+        height: 64px;
+        border-radius: 16px;
+        background-color: var(--color-greige);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.8rem;
+        position: relative;
+        z-index: 1;
+      }
+
+      /* Efecto Glow en el icono al hacer hover */
+      .lime-glow::before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        background-color: var(--color-lime);
+        border-radius: inherit;
+        z-index: -1;
+        filter: blur(12px);
+        opacity: 0;
+        transition: var(--transition-smooth);
+      }
+
+      .innovation-card:hover .lime-glow::before {
+        opacity: 0.6;
+        transform: scale(1.15);
+      }
+
+      .innovation-card h3 {
+        font-size: 1.6rem;
+        font-weight: 800;
+        letter-spacing: -0.5px;
+        margin: 0;
+      }
+
+      .innovation-card p {
+        font-size: 1.05rem;
+        color: #666;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      .bento-section {
+        background-color: var(--color-greige);
+        padding: 2rem 0 4rem 0;
+      }
+
+      .bento-grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        grid-template-rows: repeat(2, 300px);
+        gap: 1.5rem;
+      }
+
+      .bento-card {
+        border-radius: var(--radius-bento);
+        padding: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        box-shadow: var(--shadow-soft);
+        transition: var(--transition-smooth);
+        overflow: hidden;
+        position: relative;
+      }
+
+      .bento-card:hover {
+        transform: translateY(-5px);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .bento-card-title {
+        font-size: 1.8rem;
+        font-weight: 700;
+        line-height: 1.2;
+        letter-spacing: -0.5px;
+        z-index: 2;
+      }
+
+      .bento-card-data {
+        font-size: 4rem;
+        font-weight: 800;
+        letter-spacing: -2px;
+        margin-top: 1rem;
+        z-index: 2;
+      }
+
+      .bento-card-desc {
+        font-size: 1.1rem;
+        opacity: 0.8;
+        margin-top: 1rem;
+        z-index: 2;
+        line-height: 1.4;
+      }
+
+      .card-large {
+        grid-column: span 2;
+        grid-row: span 2;
+        background-color: var(--color-bento-white);
+      }
+
+      .card-large .bento-card-title {
+        font-size: 2.5rem;
+      }
+
+      .card-wide {
+        grid-column: span 2;
+        background-color: var(--color-bento-green);
+      }
+
+      .card-square-1 {
+        background-color: var(--color-bento-blue);
+        color: white;
+      }
+
+      .card-square-2 {
+        background-color: var(--color-dark);
+        color: var(--color-lime);
+      }
+
+      .bento-graphic {
+        position: absolute;
+        bottom: -20px;
+        right: -20px;
+        width: 150px;
+        height: 150px;
+        border-radius: 50%;
+        background: linear-gradient(
+          135deg,
+          rgba(255, 255, 255, 0.4),
+          rgba(255, 255, 255, 0)
+        );
+        z-index: 1;
+      }
+
+      .card-square-2 .bento-graphic {
+        background: radial-gradient(
+          circle,
+          rgba(234, 242, 77, 0.2) 0%,
+          transparent 70%
+        );
+        width: 200px;
+        height: 200px;
+      }
+
+      .talent-section {
+        background-color: var(--color-bento-white);
+        border-radius: var(--radius-bento);
+        margin: 0 2rem 4rem 2rem;
+        padding: 6rem 4rem;
+        text-align: center;
+        box-shadow: var(--shadow-soft);
+      }
+
+      .talent-title {
+        font-size: 3rem;
+        font-weight: 800;
+        margin-bottom: 1.5rem;
+        letter-spacing: -1px;
+      }
+
+      .talent-desc {
+        font-size: 1.25rem;
+        color: #555;
+        max-width: 600px;
+        margin: 0 auto 3rem auto;
+      }
+
+      .dual-portal {
+        padding: 4rem 0 8rem 0;
+      }
+
+      .portal-header {
+        text-align: center;
+        margin-bottom: 4rem;
+      }
+
+      .portal-header h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+      }
+
+      .portal-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+      }
+
+      .portal-card {
+        background-color: var(--color-bento-white);
+        border-radius: var(--radius-bento);
+        padding: 4rem 3rem;
+        text-align: center;
+        box-shadow: var(--shadow-soft);
+        transition: var(--transition-smooth);
+        border: 2px solid transparent;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      .portal-card:hover {
+        transform: translateY(-10px);
+        border-color: rgba(0, 0, 0, 0.1);
+        box-shadow: var(--shadow-hover);
+      }
+
+      .portal-icon {
+        width: 80px;
+        height: 80px;
+        background-color: var(--color-greige);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2rem;
+        font-size: 2rem;
+      }
+
+      .portal-card.logistics .portal-icon {
+        background-color: var(--color-dark);
+        color: var(--color-lime);
+      }
+
+      .portal-card h3 {
+        font-size: 2.2rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+      }
+
+      .portal-card p {
+        font-size: 1.1rem;
+        color: #666;
+        margin-bottom: 2.5rem;
+        line-height: 1.5;
+      }
+
+      .portal-btn {
+        padding: 1rem 2rem;
+        border-radius: 100px;
+        font-weight: 600;
+        background-color: var(--color-dark);
+        color: var(--color-text-light);
+        transition: var(--transition-smooth);
+        width: 100%;
+        max-width: 250px;
+        border: none;
+        cursor: pointer;
+        font-family: inherit;
+        font-size: 1rem;
+      }
+
+      .portal-card:hover .portal-btn {
+        background-color: var(--color-lime);
+        color: var(--color-dark);
+      }
+
+      /* NUEVA SECCIÓN: Contacto Directo */
+      .contact-section {
+        padding: 4rem 2rem;
+        background-color: var(--color-greige);
+      }
+
+      .contact-wrapper {
+        background-color: var(--color-bento-white);
+        border-radius: var(--radius-bento);
+        padding: 5rem;
+        box-shadow: var(--shadow-soft);
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 4rem;
+      }
+
+      .contact-info h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        margin-bottom: 1.5rem;
+      }
+
+      .contact-info p {
+        font-size: 1.1rem;
+        color: #555;
+        margin-bottom: 2rem;
+        max-width: 400px;
+        line-height: 1.6;
+      }
+
+      /* --- Detalles Interiores Bento Box --- */
+      .quality-seals {
+        display: flex;
+        gap: 0.8rem;
+        margin-top: 2rem;
+        flex-wrap: wrap;
+        position: relative;
+        z-index: 2;
+      }
+
+      .seal-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.5rem;
+        padding: 0.5rem 1rem;
+        background-color: var(--color-greige);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        border-radius: 8px;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--color-text-dark);
+      }
+
+      .composition-wrapper {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .comp-item {
+        margin-bottom: 1rem;
+      }
+
+      .comp-labels {
+        display: flex;
+        justify-content: space-between;
+        font-size: 0.9rem;
+        font-weight: 600;
+        margin-bottom: 0.4rem;
+        color: var(--color-text-dark);
+      }
+
+      .comp-bar-bg {
+        width: 100%;
+        height: 6px;
+        background-color: rgba(255, 255, 255, 0.5);
+        border-radius: 100px;
+        overflow: hidden;
+      }
+
+      .comp-bar-fill {
+        height: 100%;
+        background-color: var(--color-dark);
+        border-radius: 100px;
+      }
+
+      .zero-waste-metric {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        background: rgba(255, 255, 255, 0.4);
+        padding: 1.2rem;
+        border-radius: 16px;
+      }
+
+      .zw-number {
+        font-size: 2.5rem;
+        font-weight: 800;
+        line-height: 1;
+        letter-spacing: -1px;
+      }
+
+      .zw-text {
+        font-size: 0.85rem;
+        line-height: 1.4;
+        opacity: 0.8;
+        font-weight: 500;
+      }
+
+      /* --- Especificaciones y Estado en Vivo --- */
+      .loom-specs {
+        margin-top: 2.5rem;
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+        position: relative;
+        z-index: 2;
+      }
+
+      .live-status {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.6rem;
+        background: rgba(234, 242, 77, 0.3); /* Verde lima semitransparente */
+        padding: 0.5rem 1.2rem;
+        border-radius: 100px;
+        font-size: 0.9rem;
+        font-weight: 700;
+        color: var(--color-dark);
+        margin-bottom: 1rem;
+        width: fit-content;
+      }
+
+      .pulse-dot {
+        width: 8px;
+        height: 8px;
+        background-color: #8a9e15; /* Lima oscurecido para contraste */
+        border-radius: 50%;
+        animation: pulse 2s infinite;
+      }
+
+      @keyframes pulse {
+        0% {
+          box-shadow: 0 0 0 0 rgba(138, 158, 21, 0.4);
+        }
+        70% {
+          box-shadow: 0 0 0 8px rgba(138, 158, 21, 0);
+        }
+        100% {
+          box-shadow: 0 0 0 0 rgba(138, 158, 21, 0);
+        }
+      }
+
+      .spec-row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding-bottom: 0.8rem;
+        border-bottom: 1px dashed rgba(0, 0, 0, 0.1);
+      }
+
+      .spec-label {
+        font-size: 0.95rem;
+        color: #666;
+        font-weight: 500;
+      }
+
+      .spec-value {
+        font-size: 0.95rem;
+        font-weight: 700;
+        color: var(--color-dark);
+      }
+
+      /* Formularios Globales (Contacto y Modales) */
+      .form-group {
+        margin-bottom: 1.5rem;
+      }
+
+      .form-group label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-size: 0.95rem;
+        font-weight: 600;
+        color: var(--color-text-dark);
+      }
+
+      .form-control {
+        width: 100%;
+        padding: 1rem 1.2rem;
+        background-color: var(--color-greige);
+        border: 1px solid transparent;
+        border-radius: 12px;
+        font-family: inherit;
+        font-size: 1rem;
+        color: var(--color-text-dark);
+        transition: var(--transition-smooth);
+      }
+
+      .form-control:focus {
+        outline: none;
+        border-color: var(--color-dark);
+        background-color: white;
+        box-shadow: 0 0 0 4px rgba(11, 11, 11, 0.05);
+      }
+
+      textarea.form-control {
+        resize: vertical;
+        min-height: 120px;
+      }
+
+      .btn-submit {
+        width: 100%;
+        background-color: var(--color-dark);
+        color: var(--color-text-light);
+        margin-top: 1rem;
+      }
+
+      .btn-submit:hover {
+        background-color: var(--color-lime);
+        color: var(--color-dark);
+      }
+
+      .footer {
+        background-color: var(--color-dark);
+        color: var(--color-text-light);
+        padding: 4rem 0 4rem 0;
+      }
+
+      .footer-grid {
+        display: grid;
+        grid-template-columns: 2fr 1fr 1fr;
+        gap: 4rem;
+        margin-bottom: 4rem;
+      }
+
+      .footer-desc {
+        opacity: 0.7;
+        margin-top: 1.5rem;
+        max-width: 400px;
+        line-height: 1.6;
+      }
+
+      .footer-title {
+        font-size: 1.2rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--color-lime);
+      }
+
+      .footer-links li {
+        margin-bottom: 1rem;
+      }
+      .footer-links a {
+        opacity: 0.7;
+        transition: var(--transition-smooth);
+      }
+      .footer-links a:hover {
+        opacity: 1;
+        color: var(--color-lime);
+      }
+
+      .footer-bottom {
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 2rem;
+        display: flex;
+        justify-content: space-between;
+        opacity: 0.5;
+        font-size: 0.9rem;
+      }
+
+      .modal {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 9999;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        opacity: 0;
+        visibility: hidden;
+        transition: var(--transition-smooth);
+        padding: 1rem;
+      }
+
+      .modal.active {
+        opacity: 1;
+        visibility: visible;
+      }
+
+      .modal-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(11, 11, 11, 0.4);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        cursor: pointer;
+      }
+
+      .modal-content {
+        position: relative;
+        background-color: var(--color-bento-white);
+        width: 100%;
+        max-width: 500px;
+        border-radius: var(--radius-bento);
+        padding: 3rem;
+        box-shadow: var(--shadow-modal);
+        transform: translateY(30px) scale(0.95);
+        transition: var(--transition-smooth);
+        max-height: 90vh;
+        overflow-y: auto;
+      }
+
+      .modal.active .modal-content {
+        transform: translateY(0) scale(1);
+      }
+
+      .modal-close {
+        position: absolute;
+        top: 1.5rem;
+        right: 1.5rem;
+        width: 40px;
+        height: 40px;
+        background: var(--color-greige);
+        border: none;
+        border-radius: 50%;
+        font-size: 1.5rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        color: var(--color-text-dark);
+        transition: var(--transition-smooth);
+      }
+
+      .modal-close:hover {
+        background: var(--color-dark);
+        color: white;
+        transform: rotate(90deg);
+      }
+
+      .modal-header {
+        margin-bottom: 2rem;
+        padding-right: 2rem; /* Prevent overlap with close button */
+      }
+
+      .modal-header h3 {
+        font-size: 2rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 0.5rem;
+      }
+
+      .modal-header p {
+        color: #666;
+        font-size: 1rem;
+      }
+
+      /* Dual Input Row for Modals */
+      .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      /* Animaciones Globales */
+      .reveal {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+      }
+      .reveal.active {
+        opacity: 1;
+        transform: translateY(0);
+      }
+
+      /* --- SECCIÓN: Showcase de Productos (Zig-Zag) --- */
+      .showcase-section {
+        padding: 4rem 2rem;
+        background-color: var(--color-greige);
+      }
+
+      .showcase-header {
+        text-align: center;
+        margin-bottom: 5rem;
+      }
+
+      .showcase-header h2 {
+        font-size: 3rem;
+        font-weight: 800;
+        letter-spacing: -1px;
+        margin-bottom: 1rem;
+      }
+
+      .showcase-header p {
+        font-size: 1.15rem;
+        color: #666;
+        max-width: 600px;
+        margin: 0 auto;
+        line-height: 1.6;
+      }
+
+      .product-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+      }
+
+      /* Invertir el orden para el efecto Zig-Zag en escritorio */
+      .product-row.reverse .product-text {
+        order: 1;
+      }
+      .product-row.reverse .product-image-wrapper {
+        order: 2;
+      }
+
+      .product-image-wrapper {
+        position: relative;
+        border-radius: var(--radius-bento);
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+        height: 500px;
+      }
+
+      .product-image {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        transition: transform 0.6s ease;
+      }
+
+      .product-row:hover .product-image {
+        transform: scale(1.05);
+      }
+
+      .product-text h3 {
+        font-size: 2.2rem;
+        font-weight: 800;
+        margin-bottom: 1.2rem;
+        letter-spacing: -0.5px;
+      }
+
+      .product-text p {
+        font-size: 1.1rem;
+        color: #555;
+        line-height: 1.7;
+        margin-bottom: 2rem;
+      }
+
+      .product-list {
+        list-style: none;
+      }
+
+      .product-list li {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.8rem;
+        font-weight: 500;
+        color: var(--color-dark);
+      }
+
+      .product-list li::before {
+        content: "✓";
+        color: var(--color-lime);
+        background: var(--color-dark);
+        border-radius: 50%;
+        width: 24px;
+        height: 24px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.8rem;
+      }
+
+      /* --- SECCIÓN: FAQ (Diseño Fiel a la Referencia) --- */
+      .faq-section {
+        padding: 4rem 2rem;
+        background-color: var(--color-greige);
+      }
+
+      .faq-wrapper {
+        display: grid;
+        grid-template-columns: 1fr 1.5fr;
+        gap: 4rem;
+        align-items: start;
+      }
+
+      .faq-left h2 {
+        font-size: clamp(2.5rem, 4vw, 3.5rem);
+        font-weight: 800;
+        line-height: 1.1;
+        letter-spacing: -1px;
+        margin-bottom: 1rem;
+      }
+
+      .faq-left p {
+        font-size: 1.1rem;
+        color: #666;
+        line-height: 1.6;
+        max-width: 400px;
+      }
+
+      .faq-accordion {
+        display: flex;
+        flex-direction: column;
+        gap: 1rem;
+      }
+
+      .faq-item {
+        background-color: var(--color-bento-white);
+        border-radius: 16px;
+        box-shadow: var(--shadow-soft);
+        overflow: hidden;
+      }
+
+      .faq-question {
+        padding: 1.5rem 2rem;
+        font-size: 1.15rem;
+        font-weight: 700;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        cursor: pointer;
+        user-select: none;
+      }
+
+      .faq-icon {
+        font-size: 1.5rem;
+        font-weight: 300;
+        transition: transform 0.4s ease;
+      }
+
+      .faq-item.active .faq-icon {
+        transform: rotate(45deg);
+      }
+
+      .faq-answer {
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.4s ease-out;
+      }
+
+      .faq-answer-inner {
+        padding: 0 2rem 1.5rem 2rem;
+        color: #555;
+        line-height: 1.6;
+        font-size: 1.05rem;
+      }
+
+      /* --- FOOTER ISLA FLOTANTE (Estructura Final) --- */
+      footer {
+        background-color: var(--color-greige);
+        padding: 4rem 1rem;
+        width: 100%;
+      }
+
+      .footer-floating {
+        background-color: var(--color-dark);
+        border-radius: var(--radius-bento);
+        padding: 5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: flex-end;
+        color: var(--color-text-light);
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+        min-height: 480px;
+        max-width: 1280px;
+        margin: 0 auto;
+        opacity: 1 !important;
+        transform: translateY(0) !important;
+      }
+
+      .footer-glow {
+        position: absolute;
+        top: -10%;
+        left: 20%;
+        width: 800px;
+        height: 800px;
+        background: radial-gradient(
+          circle,
+          rgba(234, 242, 77, 0.15) 0%,
+          transparent 60%
+        );
+        border-radius: 50%;
+        filter: blur(60px);
+        z-index: 1;
+        pointer-events: none;
+      }
+
+      /* Columna Izquierda (Marca, descripción y contacto) */
+      .footer-col-left {
+        position: relative;
+        z-index: 2;
+        max-width: 380px;
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+      }
+
+      .footer-tagline-top {
+        font-size: 0.9rem;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--color-lime);
+        font-weight: 700;
+        margin: 0;
+      }
+
+      .footer-brand-horizontal {
+        font-size: clamp(3rem, 5vw, 4.5rem);
+        font-weight: 800;
+        letter-spacing: -2px;
+        color: var(--color-text-light);
+        line-height: 1;
+        margin: 0;
+      }
+
+      .footer-company-desc {
+        font-size: 0.95rem;
+        opacity: 0.7;
+        line-height: 1.6;
+        margin: 0;
+      }
+
+      .footer-contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        font-size: 0.95rem;
+        opacity: 0.85;
+      }
+
+      .footer-contact-info a {
+        transition: var(--transition-smooth);
+      }
+      .footer-contact-info a:hover {
+        color: var(--color-lime);
+      }
+
+      .footer-socials {
+        display: flex;
+        gap: 1rem;
+        margin-top: 0.5rem;
+      }
+
+      .footer-socials a {
+        width: 36px;
+        height: 36px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 0.9rem;
+        transition: var(--transition-smooth);
+      }
+
+      .footer-socials a:hover {
+        background-color: var(--color-lime);
+        color: var(--color-dark);
+        border-color: var(--color-lime);
+      }
+
+      /* Columna Derecha (Enlaces y Copyright) */
+      .footer-content-right {
+        position: relative;
+        z-index: 2;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        gap: 4rem;
+      }
+
+      .footer-links-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 3rem;
+        text-align: left;
+      }
+
+      .footer-title {
+        font-size: 1.1rem;
+        font-weight: 700;
+        margin-bottom: 1.5rem;
+        color: var(--color-text-light);
+      }
+
+      .footer-links li {
+        margin-bottom: 1rem;
+      }
+      .footer-links a {
+        opacity: 0.6;
+        transition: var(--transition-smooth);
+        font-size: 0.95rem;
+      }
+      .footer-links a:hover {
+        opacity: 1;
+        color: var(--color-lime);
+      }
+
+      .footer-bottom {
+        display: flex;
+        gap: 2rem;
+        opacity: 0.5;
+        font-size: 0.85rem;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        padding-top: 2rem;
+        width: 100%;
+        justify-content: flex-end;
+      }
+
+      .footer-socials {
+        display: flex;
+        gap: 0.8rem;
+        margin-top: 0.5rem;
+      }
+
+      .footer-socials a {
+        width: 40px;
+        height: 40px;
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.1);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--color-text-light);
+        transition: var(--transition-smooth);
+      }
+
+      .footer-socials a:hover {
+        background-color: var(--color-lime);
+        color: var(--color-dark);
+        border-color: var(--color-lime);
+        transform: translateY(-2px);
+      }
+
+      @media (max-width: 1024px) {
+        .bento-grid {
+          grid-template-columns: repeat(2, 1fr);
+          grid-template-rows: auto;
+        }
+        .card-large {
+          grid-column: span 2;
+        }
+        .card-wide,
+        .card-square-1,
+        .card-square-2 {
+          grid-column: span 1;
+        }
+        .card-wide {
+          grid-column: span 2;
+        }
+        .contact-wrapper {
+          grid-template-columns: 1fr;
+          padding: 4rem 3rem;
+          gap: 2rem;
+        }
+        .innovation-grid {
+          grid-template-columns: repeat(2, 1fr);
+        }
+
+      }
+
+      @media (max-width: 768px) {
+        .desktop-nav {
+          display: none;
+        }
+
+        .menu-toggle {
+          display: flex;
+        }
+
+       /* --- HERO MÓVIL (EXPANDIDO, SIN COMPRESIÓN Y CON MÁS GAP) --- */
+        .hero {
+          min-height: 100vh;
+          padding: 3dvh 1.5rem 3rem 1.5rem; /* Da aire arriba para que el header no aplaste */
+        }
+
+        .hero-content {
+          padding: 0;
+          gap: 2.8rem; /* LA CLAVE: Separación amplia y uniforme entre todos los bloques */
+          width: 100%;
+        }
+
+        .hero-tag {
+          margin: 0; /* Quitamos los márgenes residuales, dejamos que el gap haga el trabajo */
+          font-size: 0.95rem;
+          padding: 0.6rem 1.4rem;
+        }
+
+        .hero-title {
+          font-size: 3.2rem; /* Aumentamos bastante el título para que ocupe más espacio visual */
+          line-height: 1.05;
+          margin: 0; 
+        }
+
+        .hero-subtitle {
+          font-size: 1.15rem; /* Subtítulo más grande para mejorar lectura y volumen */
+          line-height: 1.6;
+          margin: 0; 
+        }
+
+        .hero-buttons {
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          gap: 1.4rem; /* Espacio entre los dos botones */
+          width: 90%;
+          margin: 0;
+          margin-top: 0.5rem; /* Ligero empuje extra para separarlos del texto */
+        }
+
+        .hero-buttons .btn {
+          width: 90%;
+          padding: 1.1rem 1.5rem; /* Botones un poco más altos para que llenen mejor */
+        }
+
+        /* Intensificamos el punto de luz y los dots en móvil para que se vean bien */
+        .hero-glow {
+          width: 300px;
+          height: 300px;
+          background: radial-gradient(
+            circle,
+            rgba(234, 242, 77, 0.3) 0%,
+            rgba(11, 11, 11, 0) 70%
+          );
+          filter: blur(50px);
+          opacity: 1;
+        }
+
+        .hero::before {
+          background-image: radial-gradient(
+            rgba(234, 242, 77, 0.25) 1.5px,
+            transparent 1.5px
+          );
+          background-size: 24px 24px;
+        }
+
+        /* 3. Resto de secciones en móvil */
+        .history-content {
+          padding: 2.5rem 1.5rem;
+        }
+        
+        .history-text-grid {
+          grid-template-columns: 1fr;
+          gap: 1.5rem;
+        }
+
+        .bento-grid {
+          grid-template-columns: 1fr;
+        }
+        
+        .card-large,
+        .card-wide,
+        .card-square-1,
+        .card-square-2 {
+          grid-column: span 1;
+        }
+
+        .talent-section {
+          margin: 0 1rem 4rem 1rem;
+          padding: 4rem 2rem;
+        }
+        
+        .portal-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .innovation-grid {
+          grid-template-columns: 1fr;
+          margin-top: 2rem;
+        }
+        
+        .contact-wrapper {
+          padding: 3rem 2rem;
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .form-row {
+          grid-template-columns: 1fr;
+        }
+        
+        .modal-content {
+          padding: 2rem;
+        }
+
+        .product-row {
+          grid-template-columns: 1fr;
+          gap: 3rem;
+        }
+        
+        .product-row.reverse .product-text {
+          order: 2;
+        }
+        
+        .product-row.reverse .product-image-wrapper {
+          order: 1;
+        }
+        
+        .product-image-wrapper {
+          height: 350px;
+        }
+
+        .faq-wrapper {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .faq-left h2 {
+          font-size: 2.5rem;
+        }
+
+        .footer-floating {
+          flex-direction: column;
+          align-items: flex-start;
+          padding: 3rem 2rem;
+          gap: 4rem;
+        }
+        
+        .footer-content-right {
+          align-items: flex-start;
+          gap: 3rem;
+        }
+        
+        .footer-links-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        
+        .footer-bottom {
+          flex-direction: column;
+          align-items: flex-start;
+          justify-content: flex-start;
+          gap: 1rem;
+        }
+
+        .showcase-header,
+        .portal-header {
+          text-align: center;
+          margin-bottom: 3rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="container nav-container">
+        <!-- Logo -->
+        <div class="logo">NovoTeix <span class="logo-dot"></span></div>
+
+        <!-- Enlaces Desktop -->
+        <nav class="desktop-nav">
+          <a href="#filosofia">Filosofía</a>
+          <a href="#innovacion">Innovación</a>
+          <a href="#portal">Accesos</a>
+          <a href="#contacto">Contacto</a>
+        </nav>
+
+        <!-- Botón Desktop/Tablet + Hamburguesa Móvil -->
+        <div class="nav-actions">
+          <a href="#" class="nav-btn-logistics" data-modal="modal-logistica"
+            >Reserva Logística</a
+          >
+
+          <button class="menu-toggle" id="menuToggle" aria-label="Obrir menú">
+            <span></span>
+            <span></span>
+            <span></span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Menú Desplegable Móvil (Dropdown idéntico a tu referencia) -->
+      <div class="mobile-dropdown" id="mobileDropdown">
+        <a href="#filosofia" class="mobile-link">Filosofía</a>
+        <a href="#innovacion" class="mobile-link">Innovación</a>
+        <a href="#portal" class="mobile-link">Accesos</a>
+        <a href="#contacto" class="mobile-link">Contacto</a>
+
+      </div>
+    </header>
+
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="hero-content">
+        <span class="hero-tag">Industria Textil 4.0</span>
+        <h1 class="hero-title reveal">
+          Tejidos técnicos sostenibles forjados para el futuro.
+        </h1>
+        <p class="hero-subtitle reveal" style="transition-delay: 0.1s">
+          Diseñamos y fabricamos textiles de alto rendimiento desde el corazón
+          de las comarcas de Alcoy y Cocentaina. 0% Emisiones, 100% Innovación.
+        </p>
+        <div class="hero-buttons reveal" style="transition-delay: 0.2s">
+          <a href="#produccion" class="btn btn-primary">Explorar Producción</a>
+          <a href="#portal" class="btn btn-secondary">Portal Corporativo</a>
+        </div>
+      </div>
+    </section>
+
+    <main>
+      <!-- SECCIÓN: Historia y Evolución -->
+      <section id="filosofia" class="history-section container">
+        <div class="history-banner reveal">
+          <div class="history-overlay"></div>
+          <div class="history-content">
+            <span class="history-badge">Nuestra Evolución</span>
+            <h2>
+              De los telares tradicionales a la
+              <span class="highlight-lime">revolución técnica</span>.
+            </h2>
+            <div class="history-text-grid">
+              <p>
+                <strong>Desde 1985</strong>, NovoTeix late en el corazón de la
+                cuenca textil de Alcoy y Cocentaina. Nacimos entre telares
+                clásicos y el sonido del algodón, pero entendimos rápido que el
+                futuro exigía evolucionar o desaparecer, llevando la tradición a
+                un nuevo nivel.
+              </p>
+              <p>
+                Hoy lideramos la transformación industrial en La Terreta:
+                operamos con cero emisiones y desarrollamos materiales técnicos
+                que acaban en el sector aeroespacial y deportivo. No solo
+                conservamos la herencia textil, la hemos reinventado para el
+                mundo.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN NUEVA: Innovación Textil -->
+      <section id="innovacion" class="innovation-section container">
+        <div class="reveal">
+          <h2 style="font-size: 2.5rem; font-weight: 800; letter-spacing: -1px">
+            Pilares de Innovación
+          </h2>
+        </div>
+        <div class="innovation-grid">
+          <div class="innovation-card reveal" style="transition-delay: 0.1s">
+            <div class="innovation-icon">♻️</div>
+            <h3>Fibras Recicladas</h3>
+            <p>
+              Transformamos residuos post-industriales y plásticos marinos en
+              hilos técnicos de alta tenacidad. Cerramos el círculo productivo
+              sin comprometer la resistencia física de los tejidos.
+            </p>
+          </div>
+          <div class="innovation-card reveal" style="transition-delay: 0.2s">
+            <div class="innovation-icon">💧</div>
+            <h3>Tinturas Ecológicas</h3>
+            <p>
+              Implementamos procesos de tintura en seco y circuitos cerrados de
+              agua. Logramos colores vibrantes y duraderos eliminando por
+              completo el vertido de químicos nocivos.
+            </p>
+          </div>
+          <div class="innovation-card reveal" style="transition-delay: 0.3s">
+            <div class="innovation-icon">🧊</div>
+            <h3>Tejeduría 3D</h3>
+            <p>
+              Desarrollamos estructuras volumétricas multicapa para aplicaciones
+              técnicas avanzadas: control térmico, aislamiento acústico y
+              absorción de impactos.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section id="produccion" class="bento-section">
+        <div class="container">
+          <div class="bento-grid">
+            <!-- Tarjeta Grande (Actualizada) -->
+            <div class="bento-card card-large reveal">
+              <div>
+                <h3 class="bento-card-title">
+                  Capacidad de Tejeduría Continua
+                </h3>
+                <p class="bento-card-desc">
+                  Maquinaria Jacquard y telares de chorro de aire de última
+                  generación trabajando ininterrumpidamente bajo demanda.
+                  Control de calidad automatizado en cada pasada.
+                </p>
+
+                <div class="quality-seals">
+                  <div class="seal-badge">🏅 OEKO-TEX® Std 100</div>
+                  <div class="seal-badge">♻️ Global Recycled Standard</div>
+                  <div class="seal-badge">📋 ISO 9001 & 14001</div>
+                </div>
+
+                <!-- NUEVO: Estado y Especificaciones -->
+                <div class="loom-specs">
+                  <div class="live-status">
+                    <span class="pulse-dot"></span> Planta operando al 98%
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label">Ancho máximo de tejeduría</span>
+                    <span class="spec-value">3.40 metros</span>
+                  </div>
+                  <div class="spec-row">
+                    <span class="spec-label"
+                      >Tiempo de inactividad (Downtime)</span
+                    >
+                    <span class="spec-value">< 0.4%</span>
+                  </div>
+                </div>
+              </div>
+              <div class="bento-card-data">
+                25K+
+                <span style="font-size: 1.5rem; font-weight: 500; opacity: 0.7"
+                  >m/día</span
+                >
+              </div>
+              <div class="bento-graphic"></div>
+            </div>
+
+            <!-- Tarjeta Ancha (Con barras de composición y métrica de residuo) -->
+            <div
+              class="bento-card card-wide reveal"
+              style="transition-delay: 0.1s"
+            >
+              <div>
+                <h3 class="bento-card-title">Hilatura Híbrida I+D</h3>
+                <p class="bento-card-desc">
+                  Composición inteligente para máximas prestaciones térmicas y
+                  mecánicas.
+                </p>
+
+                <!-- Barras y métricas añadidas -->
+                <div class="composition-wrapper">
+                  <div>
+                    <div class="comp-item">
+                      <div class="comp-labels">
+                        <span>Plástico Marino (rPET)</span> <span>60%</span>
+                      </div>
+                      <div class="comp-bar-bg">
+                        <div class="comp-bar-fill" style="width: 60%"></div>
+                      </div>
+                    </div>
+                    <div class="comp-item">
+                      <div class="comp-labels">
+                        <span>Algodón Orgánico Recuperado</span>
+                        <span>30%</span>
+                      </div>
+                      <div class="comp-bar-bg">
+                        <div class="comp-bar-fill" style="width: 30%"></div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="zero-waste-metric">
+                    <div class="zw-number">98%</div>
+                    <div class="zw-text">
+                      Recuperación de merma y saldo textil reintroducido al
+                      ciclo.
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div
+                class="bento-graphic"
+                style="
+                  background: linear-gradient(
+                    135deg,
+                    rgba(255, 255, 255, 0.6),
+                    rgba(255, 255, 255, 0)
+                  );
+                "
+              ></div>
+            </div>
+
+            <!-- Tarjetas Cuadradas (Sin cambios, ya estaban bien) -->
+            <div
+              class="bento-card card-square-1 reveal"
+              style="transition-delay: 0.2s"
+            >
+              <h3 class="bento-card-title">Huella<br />Hídrica</h3>
+              <div class="bento-card-data">-85%</div>
+              <p class="bento-card-desc">Agua reciclada en tintura.</p>
+            </div>
+
+            <div
+              class="bento-card card-square-2 reveal"
+              style="transition-delay: 0.3s"
+            >
+              <h3 class="bento-card-title">Energía<br />Limpia</h3>
+              <div class="bento-card-data" style="color: white">100%</div>
+              <p
+                class="bento-card-desc"
+                style="color: rgba(255, 255, 255, 0.7)"
+              >
+                Autoconsumo fotovoltaico.
+              </p>
+              <div class="bento-graphic"></div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN NUEVA: Aplicaciones / Showcase sin Cards -->
+      <section id="aplicaciones" class="showcase-section container">
+        <div class="showcase-header reveal">
+          <h2>Aplicaciones Finales</h2>
+          <p>
+            Nuestros tejidos técnicos son la base estructural de productos que
+            exigen el máximo rendimiento en condiciones extremas.
+          </p>
+        </div>
+
+        <!-- Producto 1 -->
+        <div class="product-row reveal">
+          <div class="product-image-wrapper">
+            <img
+              src="deportivo.jpg"
+              alt="Tejido Deportivo"
+              class="product-image"
+            />
+          </div>
+          <div class="product-text">
+            <h3>Deporte de Alto Rendimiento</h3>
+            <p>
+              Desarrollamos mallas transpirables y tejidos de compresión para
+              marcas deportivas de élite. Materiales ultraligeros que mejoran la
+              termorregulación del atleta durante competiciones de exigencia
+              extrema.
+            </p>
+            <ul class="product-list">
+              <li>Fibras con tratamiento anti-bacteriano</li>
+              <li>Secado ultrarrápido (Tecnología Quick-Dry)</li>
+              <li>Elasticidad 4-way stretch sin deformación</li>
+            </ul>
+          </div>
+        </div>
+
+        <!-- Producto 2 (Invertido) -->
+        <div class="product-row reverse reveal" style="transition-delay: 0.1s">
+          <div class="product-text">
+            <h3>Automoción y Movilidad</h3>
+            <p>
+              Suministramos textiles técnicos para el interior de vehículos
+              eléctricos y transporte público. Tejidos diseñados para soportar
+              el desgaste diario continuo superando las normativas europeas más
+              estrictas de seguridad.
+            </p>
+            <ul class="product-list">
+              <li>Alta resistencia a la abrasión (Test Martindale)</li>
+              <li>Certificación ignífuga (Autoextinguible)</li>
+              <li>Fácil limpieza y repelencia a líquidos</li>
+            </ul>
+          </div>
+          <div class="product-image-wrapper">
+            <img src="automoción.jpg" alt="Automoción" class="product-image" />
+          </div>
+        </div>
+      </section>
+
+      <!-- SECCIÓN ACTUALIZADA: Portal de Accesos -->
+      <section id="portal" class="dual-portal">
+        <div class="container">
+          <div class="portal-header reveal">
+            <h2>Portal de Accesos</h2>
+            <!-- NUEVO: Texto guía para el usuario -->
+            <p
+              style="
+                font-size: 1.15rem;
+                color: #666;
+                max-width: 650px;
+                margin: 1rem auto 0;
+                line-height: 1.6;
+              "
+            >
+              Selecciona tu perfil operativo. Nuestro sistema automatizado te
+              guiará paso a paso para confirmar tu cita o tu turno de muelle en
+              menos de 1 minuto, sin llamadas ni tiempos de espera.
+            </p>
+          </div>
+
+          <div class="portal-grid">
+            <div class="portal-card reveal">
+              <div class="portal-icon">🤝</div>
+              <h3>Visita Comercial B2B</h3>
+              <p>
+                Reserva salas de reuniones, solicita muestrarios de tejidos
+                técnicos y planifica tu visita a nuestras oficinas de desarrollo
+                y showroom.
+              </p>
+              <button class="portal-btn" data-modal="modal-comercial">
+                Área de Clientes
+              </button>
+            </div>
+
+            <div
+              class="portal-card logistics reveal"
+              style="transition-delay: 0.2s"
+            >
+              <div class="portal-icon">🚛</div>
+              <h3>Accesos Logística</h3>
+              <p>
+                Gestión automatizada para transportistas. Reserva turno de
+                carga/descarga en nuestros muelles 1 al 4 y consulta normativas
+                de acceso.
+              </p>
+              <button class="portal-btn" data-modal="modal-logistica">
+                Plataforma Logística
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="talento" class="container">
+        <div class="talent-section reveal">
+          <h2 class="talent-title">El talento local mueve los telares.</h2>
+          <p class="talent-desc">
+            Buscamos ingenieros textiles, operarios de telares y especialistas
+            en calidad visual. Desarrolla tu carrera en la fábrica más avanzada
+            de la provincia de Alicante.
+          </p>
+          <button
+            class="btn btn-primary"
+            data-modal="modal-talento"
+            style="
+              background-color: var(--color-lime);
+              color: var(--color-dark);
+            "
+          >
+            Trabaja con nosotros
+          </button>
+        </div>
+      </section>
+
+      <!-- SECCIÓN: Preguntas Frecuentes -->
+      <section class="faq-section container reveal">
+        <div class="faq-wrapper">
+          <div class="faq-left">
+            <h2>Todo lo que necesitas<br />saber</h2>
+            <p>
+              Guía completa para el desarrollo, producción y logística de tus
+              tejidos técnicos con NovoTeix.
+            </p>
+          </div>
+          <div class="faq-accordion">
+            <div class="faq-item">
+              <div class="faq-question">
+                ¿Cuál es el pedido mínimo (MOQ)? <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Para tejidos en stock el mínimo es de 1 rollo (aprox. 50
+                  metros). Para desarrollos híbridos a medida, requerimos un
+                  volumen inicial de 500 metros para justificar el I+D y las
+                  pruebas de telar.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                ¿Tienen certificación OEKO-TEX®? <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Sí, el 100% de nuestra hilatura y los procesos de tintura
+                  cuentan con la certificación OEKO-TEX® Standard 100,
+                  garantizando la total ausencia de sustancias nocivas para la
+                  salud o el medio ambiente.
+                </div>
+              </div>
+            </div>
+            <div class="faq-item">
+              <div class="faq-question">
+                ¿Realizáis envíos internacionales?
+                <span class="faq-icon">+</span>
+              </div>
+              <div class="faq-answer">
+                <div class="faq-answer-inner">
+                  Por supuesto. Desde nuestros muelles de carga en Alcoy
+                  suministramos a marcas en toda Europa, con plazos de tránsito
+                  de 3 a 5 días laborables mediante nuestra red logística
+                  automatizada.
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="contacto" class="contact-section container reveal">
+        <div class="contact-wrapper">
+          <div class="contact-info">
+            <h2>Hablemos de tu próximo proyecto.</h2>
+            <p>
+              Nuestro equipo de ingeniería textil está preparado para
+              desarrollar soluciones a medida. Escríbenos y te responderemos en
+              menos de 24 horas.
+            </p>
+            <div style="margin-top: 2rem">
+              <strong>Oficinas Centrales:</strong><br />
+              Polígono Industrial Cotes Baixes,<br />
+              03804 Alcoy (Alicante)<br />
+              info@novoteix.es
+            </div>
+          </div>
+          <div class="contact-form">
+            <form
+              action="#"
+              method="POST"
+              onsubmit="
+                event.preventDefault();
+                alert('Formulario enviado (Simulación)');
+              "
+            >
+              <div class="form-row">
+                <div class="form-group">
+                  <label for="c-name">Nombre completo</label>
+                  <input
+                    type="text"
+                    id="c-name"
+                    class="form-control"
+                    placeholder="Ej. Laura Martínez"
+                    required
+                  />
+                </div>
+                <div class="form-group">
+                  <label for="c-empresa">Empresa</label>
+                  <input
+                    type="text"
+                    id="c-empresa"
+                    class="form-control"
+                    placeholder="Tu compañía"
+                    required
+                  />
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="c-email">Correo electrónico</label>
+                <input
+                  type="email"
+                  id="c-email"
+                  class="form-control"
+                  placeholder="nombre@empresa.com"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label for="c-mensaje">Mensaje o requerimiento técnico</label>
+                <textarea
+                  id="c-mensaje"
+                  class="form-control"
+                  placeholder="Detalla los requisitos de tejido, normativas o volumen..."
+                  required
+                ></textarea>
+              </div>
+              <button type="submit" class="btn btn-submit">
+                Enviar Consulta
+              </button>
+            </form>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- FOOTER ISLA FLOTANTE -->
+    <footer>
+      <div class="footer-floating">
+        <div class="footer-glow"></div>
+
+        <!-- Columna Izquierda: Título lima arriba + Logo + Descripción + Contacto + Redes -->
+        <div class="footer-col-left">
+          <p class="footer-tagline-top">Ingeniería Textil Sostenible</p>
+          <h2 class="footer-brand-horizontal">NovoTeix</h2>
+          <p class="footer-company-desc">
+            Fabricación avanzada de tejidos técnicos de alto rendimiento desde
+            el corazón de Alcoy y Cocentaina.
+          </p>
+          <div class="footer-contact-info">
+            <span>📞 +34 965 00 00 00</span>
+            <span
+              >✉️ <a href="mailto:info@novoteix.es">info@novoteix.es</a></span
+            >
+          </div>
+          <div class="footer-socials">
+            <!-- LinkedIn -->
+            <a href="#" aria-label="LinkedIn" target="_blank" rel="noopener">
+              <svg
+                width="18"
+                height="18"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"
+                />
+              </svg>
+            </a>
+            <!-- Instagram -->
+            <a href="#" aria-label="Instagram" target="_blank" rel="noopener">
+              <svg
+                width="18"
+                height="18"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"
+                />
+              </svg>
+            </a>
+            <!-- Facebook -->
+            <a href="#" aria-label="Facebook" target="_blank" rel="noopener">
+              <svg
+                width="18"
+                height="18"
+                fill="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  d="M9 8h-3v4h3v12h5v-12h3.642l.358-4h-4v-1.667c0-.955.192-1.333 1.115-1.333h2.885v-5h-3.808c-3.596 0-5.192 1.583-5.192 4.615v3.385z"
+                />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <!-- Columna Derecha: Enlaces y Copyright -->
+        <div class="footer-content-right">
+          <div class="footer-links-grid">
+            <div>
+              <h4 class="footer-title">Compañía</h4>
+              <ul class="footer-links">
+                <li><a href="#">Proyectos</a></li>
+                <li><a href="#">Sostenibilidad</a></li>
+                <li><a href="#">I+D+i Textil</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="footer-title">Recursos</h4>
+              <ul class="footer-links">
+                <li><a href="#">Fichas Técnicas</a></li>
+                <li><a href="#">Casos de Éxito</a></li>
+                <li><a href="#">Portal Logística</a></li>
+              </ul>
+            </div>
+            <div>
+              <h4 class="footer-title">Legal</h4>
+              <ul class="footer-links">
+                <li><a href="#">Aviso Legal</a></li>
+                <li><a href="#">Privacidad</a></li>
+                <li><a href="#">Cookies</a></li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="footer-bottom">
+            <span>&copy; 2026 NovoTeix. Todos los derechos reservados.</span>
+            <span>Polígono Industrial Cotes Baixes, Alcoy (Alicante)</span>
+          </div>
+        </div>
+      </div>
+    </footer>
+
+    <!-- MODALES -->
+    <div id="modals-container">
+      <!-- Modal Talento -->
+      <div class="modal" id="modal-talento">
+        <div class="modal-overlay" data-close></div>
+        <div class="modal-content">
+          <button class="modal-close" data-close>&times;</button>
+          <div class="modal-header">
+            <h3>Únete al equipo</h3>
+            <p>
+              Completa el formulario para aplicar a nuestras vacantes abiertas.
+            </p>
+          </div>
+          <form
+            onsubmit="
+              event.preventDefault();
+              this.closest('.modal').querySelector('[data-close]').click();
+            "
+          >
+            <div class="form-group">
+              <label>Nombre y Apellidos</label>
+              <input type="text" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label>Correo Electrónico</label>
+              <input type="email" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label>Puesto al que aspira</label>
+              <select class="form-control" required>
+                <option value="">Seleccione un perfil...</option>
+                <option value="ingeniero">Ingeniero/a Textil I+D</option>
+                <option value="operario">Operario/a de Telares Jacquard</option>
+                <option value="calidad">Técnico/a de Calidad Visual</option>
+                <option value="otro">Otro</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label>Enlace a LinkedIn o Portfolio</label>
+              <input
+                type="url"
+                class="form-control"
+                placeholder="https://linkedin.com/in/..."
+                required
+              />
+            </div>
+            <button type="submit" class="btn btn-submit">
+              Enviar Solicitud
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal B2B -->
+      <div class="modal" id="modal-comercial">
+        <div class="modal-overlay" data-close></div>
+        <div class="modal-content">
+          <button class="modal-close" data-close>&times;</button>
+          <div class="modal-header">
+            <h3>Reserva Visita B2B</h3>
+            <p>
+              Planifica tu visita a nuestro showroom y laboratorio de
+              desarrollo.
+            </p>
+          </div>
+          <form
+            onsubmit="
+              event.preventDefault();
+              this.closest('.modal').querySelector('[data-close]').click();
+            "
+          >
+            <div class="form-group">
+              <label>Nombre completo</label>
+              <input type="text" class="form-control" required />
+            </div>
+            <div class="form-group">
+              <label>Empresa</label>
+              <input type="text" class="form-control" required />
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Fecha propuesta</label>
+                <input type="date" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label>Hora</label>
+                <input type="time" class="form-control" required />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-submit">
+              Solicitar Reserva
+            </button>
+          </form>
+        </div>
+      </div>
+
+      <!-- Modal Logística -->
+      <div class="modal" id="modal-logistica">
+        <div class="modal-overlay" data-close></div>
+        <div class="modal-content">
+          <button class="modal-close" data-close>&times;</button>
+          <div class="modal-header">
+            <h3>Gestión Logística</h3>
+            <p>Reserva turno de muelle para cargas y descargas.</p>
+          </div>
+          <form
+            onsubmit="
+              event.preventDefault();
+              this.closest('.modal').querySelector('[data-close]').click();
+            "
+          >
+            <div class="form-row">
+              <div class="form-group">
+                <label>Matrícula del Camión</label>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Ej. 1234 ABC"
+                  required
+                />
+              </div>
+              <div class="form-group">
+                <label>Transportista / Agencia</label>
+                <input type="text" class="form-control" required />
+              </div>
+            </div>
+            <div class="form-group">
+              <label>Muelle Asignado / Preferido</label>
+              <select class="form-control" required>
+                <option value="">Seleccione muelle...</option>
+                <option value="1">Muelle 1 (Carga Hilo)</option>
+                <option value="2">Muelle 2 (Descarga Materia Prima)</option>
+                <option value="3">Muelle 3 (Expedición Tejidos)</option>
+                <option value="4">Muelle 4 (Expedición Tejidos)</option>
+              </select>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label>Fecha</label>
+                <input type="date" class="form-control" required />
+              </div>
+              <div class="form-group">
+                <label>Hora de llegada</label>
+                <input type="time" class="form-control" required />
+              </div>
+            </div>
+            <button type="submit" class="btn btn-submit">
+              Confirmar Turno
+            </button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Animaciones Scroll (Intersection Observer) ---
+        setTimeout(() => {
+          const heroReveals = document.querySelectorAll(".hero .reveal");
+          heroReveals.forEach((el) => el.classList.add("active"));
+        }, 100);
+
+        const revealOptions = {
+          root: null,
+          rootMargin: "0px",
+          threshold: 0.15,
+        };
+
+        const revealOnScroll = new IntersectionObserver((entries, observer) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.add("active");
+              observer.unobserve(entry.target);
+            }
+          });
+        }, revealOptions);
+
+        const revealElements = document.querySelectorAll("main .reveal");
+        revealElements.forEach((el) => {
+          revealOnScroll.observe(el);
+        });
+
+        // --- Lógica Sistema de Modales ---
+        const modalTriggers = document.querySelectorAll("[data-modal]");
+        const closeButtons = document.querySelectorAll("[data-close]");
+
+        // Abrir modal
+        modalTriggers.forEach((trigger) => {
+          trigger.addEventListener("click", (e) => {
+            e.preventDefault();
+            const modalId = trigger.getAttribute("data-modal");
+            const modal = document.getElementById(modalId);
+
+            if (modal) {
+              modal.classList.add("active");
+              document.body.style.overflow = "hidden"; // Evita scroll en el fondo
+            }
+          });
+        });
+
+        // Cerrar modal (Clic en X o en el fondo oscuro/overlay)
+        closeButtons.forEach((btn) => {
+          btn.addEventListener("click", (e) => {
+            e.preventDefault();
+            const modal = btn.closest(".modal");
+
+            if (modal) {
+              modal.classList.remove("active");
+              document.body.style.overflow = ""; // Restaura scroll
+            }
+          });
+        });
+
+        // Cerrar modal con la tecla ESC
+        document.addEventListener("keydown", (e) => {
+          if (e.key === "Escape") {
+            const activeModal = document.querySelector(".modal.active");
+            if (activeModal) {
+              activeModal.classList.remove("active");
+              document.body.style.overflow = "";
+            }
+          }
+        });
+
+        // --- Lógica del Acordeón FAQ ---
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        faqItems.forEach((item) => {
+          const question = item.querySelector(".faq-question");
+          const answer = item.querySelector(".faq-answer");
+
+          question.addEventListener("click", () => {
+            const isOpen = item.classList.contains("active");
+
+            // Cerrar todos primero
+            faqItems.forEach((faq) => {
+              faq.classList.remove("active");
+              faq.querySelector(".faq-answer").style.maxHeight = null;
+            });
+
+            // Abrir el clickeado si estaba cerrado
+            if (!isOpen) {
+              item.classList.add("active");
+              answer.style.maxHeight = answer.scrollHeight + "px";
+            }
+          });
+        });
+
+        // --- Menú Desplegable Móvil (Corregido y activo) ---
+        const menuToggle = document.getElementById("menuToggle");
+        const mobileDropdown = document.getElementById("mobileDropdown");
+        const mobileLinks = document.querySelectorAll(".mobile-dropdown a");
+
+        if (menuToggle && mobileDropdown) {
+          menuToggle.addEventListener("click", () => {
+            mobileDropdown.classList.toggle("active");
+          });
+
+          mobileLinks.forEach((link) => {
+            link.addEventListener("click", () => {
+              mobileDropdown.classList.remove("active");
+            });
+          });
+        }
+      });
+    </script>
+  </body>
+</html>
