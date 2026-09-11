@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>NovoTeix | Tejidos Técnicos Sostenibles - Alcoy & Cocentaina</title>
+    <meta name="theme-color" content="#0b0b0b" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
 
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -13,6 +15,26 @@
     />
 
     <style>
+
+      /* =========================================
+         PERSONALIZACIÓN DE LA BARRA DE SCROLL
+         ========================================= */
+      ::-webkit-scrollbar {
+        width: 8px; /* Hace la barra más pequeñita y fina */
+      }
+
+      ::-webkit-scrollbar-track {
+        background: var(--color-greige); /* Fondo claro del body */
+      }
+
+      ::-webkit-scrollbar-thumb {
+        background: var(--color-lime); /* Barra en amarillo eléctrico */
+        border-radius: 10px; /* Bordes redondeados para un look más pulido */
+      }
+
+      ::-webkit-scrollbar-thumb:hover {
+        background: #d4db3b; /* Un lima ligeramente más oscuro al pasar el ratón */
+      }
       :root {
         /* Colores Base */
         --color-dark: #0b0b0b;
@@ -45,7 +67,7 @@
 
       body {
         font-family: "Outfit", sans-serif;
-        background-color: var(--color-dark);
+        background-color: var(--color-greige);
         color: var(--color-text-dark);
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
@@ -65,6 +87,7 @@
         max-width: 1280px;
         margin: 0 auto;
         padding: 0 2rem;
+        
       }
 
       .text-center {
@@ -91,6 +114,7 @@
         max-width: 1280px;
         margin: 0 auto;
         color: var(--color-text-light);
+        
       }
 
       .logo {
@@ -353,6 +377,7 @@
       .history-section {
         padding-top: 8rem;
         padding-bottom: 4rem;
+        background-color: var(--color-greige);
       }
 
       .history-banner {
@@ -641,6 +666,7 @@
 
       .dual-portal {
         padding: 4rem 0 8rem 0;
+        background-color: var(--color-greige);
       }
 
       .portal-header {
