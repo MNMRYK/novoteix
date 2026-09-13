@@ -73,13 +73,18 @@
         box-sizing: border-box;
       }
 
-      body {
-        font-family: "Outfit", sans-serif;
-        background-color: var(--color-greige);
+      html, body {
+        background-color: var(--color-dark);
         color: var(--color-text-dark);
+        font-family: "Outfit", sans-serif;
         overflow-x: hidden;
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
+      }
+
+      /* Le devolvemos el fondo claro al resto de la web */
+      main {
+        background-color: var(--color-greige);
       }
 
       a {
@@ -1550,49 +1555,50 @@
           display: flex;
         }
 
-       /* --- HERO MÓVIL (EXPANDIDO, SIN COMPRESIÓN Y CON MÁS GAP) --- */
+       /* --- HERO MÓVIL (CORRECCIÓN SAFARI Y ESCALADO) --- */
         .hero {
-          min-height: 100vh;
-          padding: 3dvh 1.5rem 3rem 1.5rem; /* Da aire arriba para que el header no aplaste */
+          min-height: 100dvh; /* "dvh" evita que Safari esconda contenido tras su barra inferior */
+          padding: 120px 1.5rem 2rem 1.5rem; /* 120px fijos arriba: muro anti-aplastamiento */
+          display: flex;
+          align-items: center;
+          justify-content: center;
         }
 
         .hero-content {
           padding: 0;
-          gap: 2.8rem; /* LA CLAVE: Separación amplia y uniforme entre todos los bloques */
+          gap: 1.5rem; /* Reducido para que no reviente la pantalla del iPhone */
           width: 100%;
         }
 
         .hero-tag {
-          margin: 0; /* Quitamos los márgenes residuales, dejamos que el gap haga el trabajo */
-          font-size: 0.95rem;
-          padding: 0.6rem 1.4rem;
+          margin: 0; 
+          font-size: 0.85rem;
+          padding: 0.5rem 1.2rem;
         }
 
         .hero-title {
-          font-size: 3.2rem; /* Aumentamos bastante el título para que ocupe más espacio visual */
-          line-height: 1.05;
+          font-size: 2.7rem; /* Reducido de 3.2 a 2.7 para encajar perfecto en el ancho */
+          line-height: 1.1;
           margin: 0; 
         }
 
         .hero-subtitle {
-          font-size: 1.15rem; /* Subtítulo más grande para mejorar lectura y volumen */
-          line-height: 1.6;
+          font-size: 1.05rem; 
+          line-height: 1.5;
           margin: 0; 
         }
 
         .hero-buttons {
           flex-direction: column;
-          justify-content: center;
-          align-items: center;
-          gap: 1.4rem; /* Espacio entre los dos botones */
+          gap: 1rem; 
           width: 90%;
           margin: 0;
-          margin-top: 0.5rem; /* Ligero empuje extra para separarlos del texto */
+          margin-top: 0.5rem; 
         }
 
         .hero-buttons .btn {
-          width: 90%;
-          padding: 1.1rem 1.5rem; /* Botones un poco más altos para que llenen mejor */
+          width: 100%;
+          padding: 1.1rem 1.5rem; 
         }
 
         /* Intensificamos el punto de luz y los dots en móvil para que se vean bien */
@@ -1689,6 +1695,12 @@
         
         .faq-left h2 {
           font-size: 2.5rem;
+        }
+
+        footer {
+          background-color: var(--color-greige);
+          padding: 4rem 1rem 1rem;
+          width: 100%;
         }
 
         .footer-floating {
